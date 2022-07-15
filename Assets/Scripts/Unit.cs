@@ -14,6 +14,12 @@ public class Unit : MonoBehaviour
         {
             SetDestination(new Vector3(4, 0, 4));
         }
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            SetDestination(MouseWorld.GetInstance().GetPosition());
+        }
+
     }
 
     private void SetDestination(Vector3 targetPosition)
