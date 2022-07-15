@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Unit : MonoBehaviour
 {
+    [SerializeField] private Animator unitAnimator;
+    
     private Vector3 targetPosition;
 
     private void Update()
@@ -32,9 +34,13 @@ public class Unit : MonoBehaviour
         float stoppingDistance = .1f;        
         if (Vector3.Distance(targetPosition, transform.position) > stoppingDistance)
         {
+            unitAnimator.SetBool("IsWalking", true);
             Vector3 moveDirection = (targetPosition - transform.position).normalized;
             float moveSpeed = 4f;
             transform.position += moveDirection * moveSpeed * Time.deltaTime;
+        } else
+        {
+            unitAnimator.SetBool("IsWalking", false);
         }
     }
 }
