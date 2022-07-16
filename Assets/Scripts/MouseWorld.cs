@@ -19,8 +19,8 @@ public class MouseWorld : MonoBehaviour
     [SerializeField] private LayerMask mousePlaneLayerMask;
     [SerializeField] private LayerMask unitLayerMask;
 
-    public LayerMask MousePlaneLayerMask { get => mousePlaneLayerMask;}
-    public LayerMask UnitLayerMask { get => unitLayerMask;}
+    public LayerMask MousePlaneLayerMask { get => mousePlaneLayerMask; }
+    public LayerMask UnitLayerMask { get => unitLayerMask; }
 
     public RaycastHit? GetRaycast(LayerMask layerMask)
     {
