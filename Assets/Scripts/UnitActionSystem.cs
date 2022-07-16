@@ -1,9 +1,12 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class UnitActionSystem : MonoBehaviour
 {
+    public event EventHandler OnSelectedUnitChanged;
+
     [SerializeField] private Unit selectedUnit;
 
     private void Update()
@@ -18,7 +21,7 @@ public class UnitActionSystem : MonoBehaviour
             {
                 if (unitCollision.Value.transform.TryGetComponent<Unit>(out Unit clickedUnit))
                 {
-                    selectedUnit = clickedUnit;
+                    SetSelectedUnit(clickedUnit);
                 }
             }
             else
@@ -35,8 +38,21 @@ public class UnitActionSystem : MonoBehaviour
         }
     }
 
-    private void HandleUnitSelection()
+    private void SetSelectedUnit(Unit unit)
     {
+        selectedUnit = unit;
 
+        //if (OnSelectedUnitChanged != null)
+        //{
+        //    OnSelectedUnitChanged(this, EventArgs.Empty);
+        //}
+        // ^^ replaced by:
+        OnSelectedUnitChanged?.Invoke(this, EventArgs.Empty);
+
+    }
+
+    public Unit GetSelectedUnit()
+    {
+        return selectedUnit;
     }
 }
