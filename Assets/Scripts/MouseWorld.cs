@@ -17,15 +17,23 @@ public class MouseWorld : MonoBehaviour
     }
 
     [SerializeField] private LayerMask mousePlaneLayerMask;
+    [SerializeField] private LayerMask unitLayerMask;
 
-    public Vector3 GetPosition()
+    public LayerMask MousePlaneLayerMask { get => mousePlaneLayerMask;}
+    public LayerMask UnitLayerMask { get => unitLayerMask;}
+
+    public RaycastHit? GetRaycast(LayerMask layerMask)
     {
+        if (
         Physics.Raycast(
             Camera.main.ScreenPointToRay(Input.mousePosition),
             out RaycastHit raycastHit,
             float.MaxValue,
-            mousePlaneLayerMask
-        );
-        return raycastHit.point;
+            layerMask
+        ))
+        {
+            return raycastHit;
+        }
+        return null;        
     }
 }

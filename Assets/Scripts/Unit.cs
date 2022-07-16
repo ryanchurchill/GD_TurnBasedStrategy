@@ -8,23 +8,17 @@ public class Unit : MonoBehaviour
     
     private Vector3 targetPosition;
 
+    private void Awake()
+    {
+        targetPosition = transform.position;
+    }
+
     private void Update()
     {
         Move();
-
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            SetDestination(new Vector3(4, 0, 4));
-        }
-
-        if (Input.GetMouseButtonDown(0))
-        {
-            SetDestination(MouseWorld.GetInstance().GetPosition());
-        }
-
     }
 
-    private void SetDestination(Vector3 targetPosition)
+    public void SetDestination(Vector3 targetPosition)
     {
         this.targetPosition = targetPosition;
     }
